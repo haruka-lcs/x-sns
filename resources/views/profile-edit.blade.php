@@ -19,7 +19,7 @@
                     type="text"
                     id="account_id"
                     name="account_id"
-                    value="tanaka"
+                    value="{{ old('account_id', $loginUser->account_id) }}"
                 >
             </div>
 
@@ -29,7 +29,7 @@
                     type="text"
                     id="user_name"
                     name="user_name"
-                    value="田中"
+                    value="{{ old('user_name', $loginUser->user_name) }}"
                 >
             </div>
 
@@ -39,30 +39,21 @@
                     type="password"
                     id="password"
                     name="password"
-                    value="1111"
+                    value="{{ old('password', $loginUser->password) }}"
                 >
             </div>
+
+            @if ($errors->any())
+                <div class="error-message">
+                    入力内容を確認してください
+                </div>
+            @endif
 
             <button type="submit" class="profile-save-button">
                 保存する
             </button>
         </form>
 
-        <nav class="bottom-nav">
-            <a href="/home" class="bottom-nav-item">
-                <span class="nav-icon">⌂</span>
-                <span>ホーム</span>
-            </a>
-
-            <a href="/post" class="bottom-nav-item">
-                <span class="nav-icon">＋</span>
-                <span>投稿</span>
-            </a>
-
-            <a href="/profile" class="bottom-nav-item active">
-                <span class="nav-icon">♙</span>
-                <span>プロフィール</span>
-            </a>
-        </nav>
+        <x-bottom-nav active="profile" />
     </div>
 @endsection
