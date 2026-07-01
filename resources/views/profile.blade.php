@@ -24,59 +24,29 @@
         </section>
 
         <section class="profile-post-list">
-            <article class="profile-post-card">
-                <div class="profile-post-avatar"></div>
+            <x-post-card
+                user-name="田中"
+                account-id="@tanaka"
+                time="15分前"
+                body="アプリを開発中です。"
+                :show-delete="true"
+            />
 
-                <div class="profile-post-content">
-                    <div class="profile-post-meta">
-                        <span class="profile-post-user-name">田中</span>
-                        <span class="profile-post-account-id">@tanaka</span>
-                        <span class="profile-post-time">15分前</span>
-                    </div>
+            <x-post-card
+                user-name="田中"
+                account-id="@tanaka"
+                time="15分前"
+                body="画面実装できた"
+                :show-delete="true"
+            />
 
-                    <p class="profile-post-text">
-                        アプリを開発中です。
-                    </p>
-                </div>
-
-                <button type="button" class="delete-post-button">🗑</button>
-            </article>
-
-            <article class="profile-post-card">
-                <div class="profile-post-avatar"></div>
-
-                <div class="profile-post-content">
-                    <div class="profile-post-meta">
-                        <span class="profile-post-user-name">田中</span>
-                        <span class="profile-post-account-id">@tanaka</span>
-                        <span class="profile-post-time">15分前</span>
-                    </div>
-
-                    <p class="profile-post-text">
-                        画面実装できた
-                    </p>
-                </div>
-
-                <button type="button" class="delete-post-button">🗑</button>
-            </article>
-
-            <article class="profile-post-card">
-                <div class="profile-post-avatar"></div>
-
-                <div class="profile-post-content">
-                    <div class="profile-post-meta">
-                        <span class="profile-post-user-name">田中</span>
-                        <span class="profile-post-account-id">@tanaka</span>
-                        <span class="profile-post-time">15分前</span>
-                    </div>
-
-                    <p class="profile-post-text">
-                        今日も少し進めた
-                    </p>
-                </div>
-
-                <button type="button" class="delete-post-button">🗑</button>
-            </article>
+            <x-post-card
+                user-name="田中"
+                account-id="@tanaka"
+                time="15分前"
+                body="今日も少し進めた"
+                :show-delete="true"
+            />
         </section>
 
         <x-bottom-nav active="profile" />
