@@ -33,6 +33,10 @@ Route::get('/profile', function () {
 });
 
 // プロフィール編集画面
+Route::post('/profile/edit', function () {
+    return redirect('/profile');
+})->name('profile.update');
+
 Route::get('/profile/edit', function () {
     return view('profile-edit');
 });

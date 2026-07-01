@@ -79,21 +79,6 @@
             </article>
         </section>
 
-        <nav class="bottom-nav">
-            <a href="/home" class="bottom-nav-item active">
-                <span class="nav-icon">⌂</span>
-                <span>ホーム</span>
-            </a>
-
-            <a href="/post" class="bottom-nav-item">
-                <span class="nav-icon">＋</span>
-                <span>投稿</span>
-            </a>
-
-            <a href="/profile" class="bottom-nav-item">
-                <span class="nav-icon">♙</span>
-                <span>プロフィール</span>
-            </a>
-        </nav>
+        <x-bottom-nav active="home" />
     </div>
 @endsection

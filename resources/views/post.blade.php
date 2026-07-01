@@ -8,37 +8,21 @@
             <h1>投稿</h1>
         </header>
 
-        <form class="post-form" action="/home" method="GET">
-            <div class="post-compose">
-                <div class="compose-avatar"></div>
+        <form class="profile-edit-form" action="{{ route('profile.update') }}" method="POST">
+    @csrf
 
-                <textarea
-                    name="body"
-                    class="compose-textarea"
-                    placeholder="いまどうしてる？"
-                ></textarea>
-            </div>
+    <div class="profile-edit-avatar"></div>
 
-            <button type="submit" class="post-submit-button">
-                投稿する
-            </button>
-        </form>
+    <div class="profile-edit-input-row">
+        <label for="account_id">ユーザーID</label>
+        <input
+            type="text"
+            id="account_id"
+            name="account_id"
+            value="tanaka"
+        >
+    </div>
 
-        <nav class="bottom-nav">
-            <a href="/home" class="bottom-nav-item">
-                <span class="nav-icon">⌂</span>
-                <span>ホーム</span>
-            </a>
-
-            <a href="/post" class="bottom-nav-item active">
-                <span class="nav-icon">＋</span>
-                <span>投稿</span>
-            </a>
-
-            <a href="/profile" class="bottom-nav-item">
-                <span class="nav-icon">♙</span>
-                <span>プロフィール</span>
-            </a>
-        </nav>
+        <x-bottom-nav active="post" />
     </div>
 @endsection
