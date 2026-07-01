@@ -258,3 +258,75 @@ body {
     font-size: 18px;
     line-height: 1;
 }
+
+.post-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.post-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-compose {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.compose-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.compose-textarea::placeholder {
+    color: #999999;
+}
+
+.post-form {
+    position: relative;
+    padding: 24px 16px;
+}
+
+.compose-textarea {
+    flex: 1;
+    min-height: 220px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: sans-serif;
+    padding-right: 130px;
+}
+
+.post-submit-button {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+
+    width: 120px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
