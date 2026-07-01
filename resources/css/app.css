@@ -123,3 +123,138 @@ body {
     border-radius: 50%;
     background-color: #cfcfcf;
 }
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.home-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.home-tabs {
+    height: 44px;
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.home-tab {
+    flex: 1;
+    border: none;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+    position: relative;
+}
+
+.home-tab.active {
+    color: #2f6df6;
+}
+
+.home-tab.active::after {
+    content: "";
+    width: 28px;
+    height: 3px;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.post-list {
+    width: 100%;
+}
+
+.post-card {
+    display: flex;
+    gap: 12px;
+    padding: 16px 16px 18px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+}
+
+.post-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+    font-size: 11px;
+}
+
+.post-user-name {
+    font-weight: bold;
+    color: #111111;
+}
+
+.post-account-id,
+.post-time {
+    color: #777777;
+}
+
+.post-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #111111;
+}
+
+.bottom-nav {
+    height: 56px;
+    border-top: 1px solid #e5e5e5;
+    background-color: #ffffff;
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    color: #111111;
+    text-decoration: none;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.bottom-nav-item.active {
+    color: #2f6df6;
+}
+
+.nav-icon {
+    font-size: 18px;
+    line-height: 1;
+}
