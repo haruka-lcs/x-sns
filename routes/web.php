@@ -2,9 +2,32 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/login', 'login');
-Route::view('/register', 'register');
-Route::view('/home', 'home');
+// トップ画面
+Route::get('/', function () {
+    return view('top');
+});
 
-/* デフォルトで / にアクセスしたら /login へ飛ばす */
-Route::redirect('/', '/login');
+// ログイン画面
+Route::get('/login', function () {
+    return view('login');
+});
+
+// 新規登録画面
+Route::get('/register', function () {
+    return view('register');
+});
+
+// ホーム画面
+Route::get('/home', function () {
+    return view('home');
+});
+
+// 投稿画面
+Route::get('/post', function () {
+    return view('post');
+});
+
+// プロフィール画面
+Route::get('/profile', function () {
+    return view('profile');
+});
