@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 // トップ画面
 Route::get('/', function () {
@@ -16,6 +17,9 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 });
+
+// 新規登録処理
+Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 
 // ホーム画面
 Route::get('/home', function () {
