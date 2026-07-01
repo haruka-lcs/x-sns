@@ -104,3 +104,22 @@ body {
     font-size: 12px;
     text-decoration: none;
 }
+
+.register-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.register-form {
+    margin-top: 40px;
+    padding: 0 32px;
+}
+
+.profile-image-placeholder {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 56px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
