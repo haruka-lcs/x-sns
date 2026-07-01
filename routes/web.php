@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -26,7 +28,22 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 
 // ホーム画面
 Route::get('/home', function () {
-    return view('home');
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
+
+    return view('home', [
+        'loginUser' => $loginUser,
+    ]);
 });
 
 // 投稿画面
@@ -36,14 +53,69 @@ Route::get('/post', function () {
 
 // プロフィール画面
 Route::get('/profile', function () {
-    return view('profile');
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
+
+    return view('profile', [
+        'loginUser' => $loginUser,
+    ]);
 });
 
 // プロフィール編集画面
-Route::post('/profile/edit', function () {
+Route::post('/profile/edit', function (Request $request) {
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
+
+    $request->validate([
+        'account_id' => 'required|max:50|unique:users,account_id,' . $loginUser->id,
+        'user_name' => 'required|max:50',
+        'password' => 'required|max:50',
+    ]);
+
+    $loginUser->update([
+        'account_id' => $request->account_id,
+        'user_name' => $request->user_name,
+        'password' => $request->password,
+    ]);
+
     return redirect('/profile');
 })->name('profile.update');
 
 Route::get('/profile/edit', function () {
-    return view('profile-edit');
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
+
+    return view('profile-edit', [
+        'loginUser' => $loginUser,
+    ]);
 });
