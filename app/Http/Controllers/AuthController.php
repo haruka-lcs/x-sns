@@ -28,4 +28,30 @@ class AuthController extends Controller
 
         return redirect('/home');
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'account_id' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('account_id', $request->account_id)
+            ->where('password', $request->password)
+            ->first();
+
+        if ($user === null) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'login' => 'ユーザーIDまたはパスワードが違います',
+                ]);
+        }
+
+        session([
+            'login_user_id' => $user->id,
+        ]);
+
+        return redirect('/home');
+    }
 }
