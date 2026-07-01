@@ -18,7 +18,7 @@
                         <p class="profile-account-id">@tanaka</p>
                     </div>
 
-                    <a href="#" class="profile-edit-button">✎</a>
+                    <a href="/profile/edit" class="profile-edit-button">✎</a>
                 </div>
             </div>
         </section>
