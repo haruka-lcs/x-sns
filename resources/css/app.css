@@ -35,3 +35,91 @@ body {
     background-color: #cfcfcf;
     color: #ffffff;
 }
+
+.auth-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.auth-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.auth-form {
+    margin-top: 120px;
+    padding: 0 32px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.form-row label {
+    width: 90px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form-row input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    outline: none;
+    padding: 6px 4px;
+    font-size: 12px;
+}
+
+.auth-submit-button {
+    display: block;
+    width: 170px;
+    height: 36px;
+    margin: 160px auto 0;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-link {
+    display: block;
+    margin-top: 24px;
+    text-align: center;
+    color: #333333;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.register-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.register-form {
+    margin-top: 40px;
+    padding: 0 32px;
+}
+
+.profile-image-placeholder {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 56px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
