@@ -8,7 +8,9 @@
             <h1>プロフィール</h1>
         </header>
 
-        <form class="profile-edit-form" action="/profile" method="GET">
+        <form class="profile-edit-form" action="{{ route('profile.update') }}" method="POST">
+            @csrf
+
             <div class="profile-edit-avatar"></div>
 
             <div class="profile-edit-input-row">
