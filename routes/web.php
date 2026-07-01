@@ -31,3 +31,8 @@ Route::get('/post', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
+
+// プロフィール編集画面
+Route::get('/profile/edit', function () {
+    return view('profile-edit');
+});

@@ -454,3 +454,72 @@ body {
     font-size: 14px;
     cursor: pointer;
 }
+
+.profile-edit-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.profile-edit-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-edit-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-edit-form {
+    padding: 48px 32px 0;
+}
+
+.profile-edit-avatar {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 72px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.profile-edit-input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-edit-input-row label {
+    width: 110px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.profile-edit-input-row input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    outline: none;
+    padding: 6px 4px;
+    font-size: 12px;
+}
+
+.profile-save-button {
+    display: block;
+    width: 120px;
+    height: 36px;
+    margin: 72px auto 0;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
