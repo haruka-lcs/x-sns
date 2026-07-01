@@ -13,6 +13,9 @@ Route::get('/login', function () {
     return view('login');
 });
 
+// ログイン処理
+Route::post('/login', [AuthController::class, 'login'])->name('login.check');
+
 // 新規登録画面
 Route::get('/register', function () {
     return view('register');
