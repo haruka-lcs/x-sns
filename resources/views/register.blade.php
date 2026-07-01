@@ -8,7 +8,9 @@
             <h1>新規登録</h1>
         </header>
 
-        <form class="register-form" action="/home" method="GET">
+        <form class="register-form" action="{{ route('register.store') }}" method="POST">
+            @csrf
+
             <div class="profile-image-placeholder"></div>
 
             <div class="form-row">
@@ -17,7 +19,7 @@
                     type="text"
                     id="account_id"
                     name="account_id"
-                    value="tanaka"
+                    value="{{ old('account_id') }}"
                 >
             </div>
 
@@ -27,7 +29,7 @@
                     type="text"
                     id="user_name"
                     name="user_name"
-                    value="田中"
+                    value="{{ old('user_name') }}"
                 >
             </div>
 
@@ -37,9 +39,14 @@
                     type="password"
                     id="password"
                     name="password"
-                    value="1111"
                 >
             </div>
+
+            @if ($errors->any())
+                <div class="error-message">
+                    入力内容を確認してください
+                </div>
+            @endif
 
             <button type="submit" class="auth-submit-button">
                 完了
