@@ -22,6 +22,9 @@
                     :body="$post->body"
                     :post-id="$post->id"
                     :can-delete="$post->user_id === session('login_user_id')"
+                    :user-id="$post->user->id"
+                    :can-follow="$post->user_id !== session('login_user_id')"
+                    :is-following="in_array($post->user_id, $followingIds)"
                 />
             @empty
                 <p class="empty-post-message">
