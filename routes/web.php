@@ -60,8 +60,14 @@ Route::get('/profile', function () {
         return redirect('/login');
     }
 
+    $posts = Post::with('user')
+        ->where('user_id', $loginUserId)
+        ->latest()
+        ->get();
+
     return view('profile', [
         'loginUser' => $loginUser,
+        'posts' => $posts,
     ]);
 });
 
