@@ -28,4 +28,15 @@ class PostController extends Controller
 
         return redirect('/home');
     }
+
+    public function destroy(Post $post)
+    {
+        if ($post->user_id !== session('login_user_id')) {
+            return redirect('/home');
+        }
+
+        $post->delete();
+
+        return redirect('/home');
+    }
 }

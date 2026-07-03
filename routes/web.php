@@ -42,6 +42,8 @@ Route::get('/home', function () {
 // 投稿画面
 Route::get('/post', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// 投稿削除
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // プロフィール画面
 Route::get('/profile', function () {
