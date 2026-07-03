@@ -2,6 +2,10 @@
 
 @section('title', '投稿')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+@endsection
+
 @section('content')
     <div class="post-page">
         <header class="post-header">

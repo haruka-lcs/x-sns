@@ -1,0 +1,200 @@
+.profile-page {
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 72px;
+}
+
+.profile-header {
+    height: 116px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 48px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #111111;
+}
+
+.profile-user-area {
+    height: 116px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.profile-large-avatar {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.profile-user-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.profile-user-text {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.profile-user-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #111111;
+}
+
+.profile-account-id {
+    margin: 0;
+    font-size: 14px;
+    color: #888888;
+}
+
+.profile-edit-button {
+    font-size: 34px;
+    color: #111111;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.profile-post-list {
+    width: 100%;
+}
+
+.profile-post-card {
+    min-height: 192px;
+    display: flex;
+    align-items: flex-start;
+    padding: 18px 16px;
+    border-bottom: 1px solid #d9d9d9;
+    position: relative;
+}
+
+.profile-post-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.profile-post-content {
+    flex: 1;
+    margin-left: 16px;
+    padding-right: 36px;
+}
+
+.profile-post-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+    margin-bottom: 12px;
+    white-space: nowrap;
+}
+
+.profile-post-user-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111111;
+}
+
+.profile-post-account-id,
+.profile-post-time {
+    font-size: 13px;
+    color: #888888;
+}
+
+.profile-post-body {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #111111;
+}
+
+.profile-delete-form {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+}
+
+.profile-delete-button {
+    border: none;
+    background-color: transparent;
+    color: #777777;
+    font-size: 22px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.profile-empty {
+    padding: 40px 16px;
+    text-align: center;
+    color: #888888;
+    font-size: 14px;
+}
+
+/* 下ナビ */
+.bottom-nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 72px;
+    background-color: #ffffff;
+    border-top: 1px solid #e6e6e6;
+    display: flex;
+    z-index: 10;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #111111;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.bottom-nav-item.active {
+    color: #111111;
+}
+
+.bottom-nav-icon {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.bottom-post-icon {
+    width: 50px;
+    height: 28px;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.post-button span {
+    color: #2f6df6;
+    font-weight: 700;
+}
