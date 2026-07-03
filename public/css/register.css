@@ -36,6 +36,9 @@
     margin-bottom: 56px;
     border-radius: 50%;
     background-color: #cfcfcf;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .register-form-area {
@@ -96,4 +99,24 @@
     font-size: 16px;
     font-weight: 700;
     color: #8a8a8a;
+}
+
+.register-avatar-upload {
+    display: block;
+    cursor: pointer;
+}
+
+.register-file-input {
+    display: none;
+}
+
+.register-image-error-message {
+    margin: -40px 0 32px;
+    color: #e0245e;
+    font-size: 12px;
+    text-align: center;
+}
+
+.register-avatar.has-image {
+    background-color: transparent;
 }

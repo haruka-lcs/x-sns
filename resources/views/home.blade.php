@@ -24,37 +24,16 @@
 
         <main class="home-post-list">
             @forelse ($posts as $post)
-                <article class="home-post-card">
-                    <div class="home-avatar-area">
-                        <div class="home-avatar"></div>
-
-                        @if (isset($followingUserIds) && in_array($post->user_id, $followingUserIds))
-                            <span class="home-follow-mark">✓</span>
-                        @else
-                            <span class="home-follow-mark">＋</span>
-                        @endif
-                    </div>
-
-                    <div class="home-post-content">
-                        <div class="home-post-header">
-                            <span class="home-user-name">
-                                {{ $post->user->user_name }}
-                            </span>
-
-                            <span class="home-account-id">
-                                {{ '@' . $post->user->account_id }}
-                            </span>
-
-                            <span class="home-post-time">
-                                ・15分前
-                            </span>
-                        </div>
-
-                        <p class="home-post-body">
-                            {{ $post->body }}
-                        </p>
-                    </div>
-                </article>
+                <x-post-card
+                    :userName="$post->user->user_name"
+                    :accountId="$post->user->account_id"
+                    time="15分前"
+                    :body="$post->body"
+                    :userId="$post->user_id"
+                    :profileImage="$post->user->profile_image"
+                    :canFollow="$loginUser->id !== $post->user_id"
+                    :isFollowing="isset($followingUserIds) && in_array($post->user_id, $followingUserIds)"
+                />
             @empty
                 <div class="home-empty">
                     <p>まだ投稿がありません。</p>

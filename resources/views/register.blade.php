@@ -13,10 +13,24 @@
         </header>
 
         <main class="register-main">
-            <form action="/register" method="POST" class="register-form">
+            <form action="/register" method="POST" class="register-form" enctype="multipart/form-data">
                 @csrf
 
-                <div class="register-avatar"></div>
+                <label class="register-avatar-upload">
+                    <div id="register-avatar-preview" class="register-avatar"></div>
+
+                    <input
+                        type="file"
+                        name="profile_image"
+                        id="register-profile-image"
+                        class="register-file-input"
+                        accept="image/*"
+                    >
+                </label>
+
+                @error('profile_image')
+                    <p class="register-image-error-message">{{ $message }}</p>
+                @enderror
 
                 <div class="register-form-area">
                     <div class="register-form-row">
@@ -85,4 +99,22 @@
             </form>
         </main>
     </div>
+
+    <script>
+        const registerProfileImage = document.getElementById('register-profile-image');
+        const registerAvatarPreview = document.getElementById('register-avatar-preview');
+
+        registerProfileImage.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            const imageUrl = URL.createObjectURL(file);
+
+            registerAvatarPreview.style.backgroundImage = `url(${imageUrl})`;
+            registerAvatarPreview.classList.add('has-image');
+        });
+    </script>
 @endsection
