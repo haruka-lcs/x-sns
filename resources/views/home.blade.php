@@ -9,8 +9,19 @@
         </header>
 
         <div class="home-tabs">
-            <button class="home-tab active">全体</button>
-            <button class="home-tab">フォロー中</button>
+            <a
+                href="{{ route('home') }}"
+                class="home-tab {{ $activeTab === 'all' ? 'active' : '' }}"
+            >
+                全体
+            </a>
+
+            <a
+                href="{{ route('home.following') }}"
+                class="home-tab {{ $activeTab === 'following' ? 'active' : '' }}"
+            >
+                フォロー中
+            </a>
         </div>
 
         <section class="post-list">
@@ -28,7 +39,7 @@
                 />
             @empty
                 <p class="empty-post-message">
-                    まだ投稿がありません。
+                    {{ $emptyMessage }}
                 </p>
             @endforelse
         </section>
