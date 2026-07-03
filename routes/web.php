@@ -30,7 +30,7 @@ Route::get('/register', function () {
 // 新規登録処理
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 
-// ホーム画面
+// ホーム画面：全体
 Route::get('/home', function () {
     $loginUserId = session('login_user_id');
 
@@ -57,8 +57,43 @@ Route::get('/home', function () {
         'loginUser' => $loginUser,
         'posts' => $posts,
         'followingIds' => $followingIds,
+        'activeTab' => 'all',
+        'emptyMessage' => 'まだ投稿がありません。',
     ]);
-});
+})->name('home');
+
+// ホーム画面：フォロー中
+Route::get('/home/following', function () {
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
+
+    $followingIds = Follow::where('follower_id', $loginUserId)
+        ->pluck('followed_id')
+        ->toArray();
+
+    $posts = Post::with('user')
+        ->whereIn('user_id', $followingIds)
+        ->latest()
+        ->get();
+
+    return view('home', [
+        'loginUser' => $loginUser,
+        'posts' => $posts,
+        'followingIds' => $followingIds,
+        'activeTab' => 'following',
+        'emptyMessage' => 'フォロー中の投稿はまだありません。',
+    ]);
+})->name('home.following');
 
 // 投稿画面
 Route::get('/post', [PostController::class, 'create'])->name('posts.create');

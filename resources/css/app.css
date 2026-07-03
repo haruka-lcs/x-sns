@@ -160,6 +160,10 @@ body {
     color: #333333;
     cursor: pointer;
     position: relative;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-tab.active {
