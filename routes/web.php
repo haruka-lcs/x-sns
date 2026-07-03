@@ -119,3 +119,6 @@ Route::get('/profile/edit', function () {
         'loginUser' => $loginUser,
     ]);
 });
+
+Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
