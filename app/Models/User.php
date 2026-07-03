@@ -12,4 +12,9 @@ class User extends Model
         'password',
         'profile_image',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
