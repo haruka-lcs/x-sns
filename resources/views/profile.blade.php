@@ -13,7 +13,15 @@
         </header>
 
         <section class="profile-user-area">
-            <div class="profile-large-avatar"></div>
+            @if ($loginUser->profile_image)
+                <img
+                    src="{{ asset('storage/' . $loginUser->profile_image) }}"
+                    class="profile-large-avatar"
+                    alt="プロフィール画像"
+                >
+            @else
+                <div class="profile-large-avatar"></div>
+            @endif
 
             <div class="profile-user-info">
                 <div class="profile-user-text">

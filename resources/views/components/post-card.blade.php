@@ -3,55 +3,63 @@
     'accountId',
     'time',
     'body',
-    'postId' => null,
-    'canDelete' => false,
     'userId' => null,
+    'profileImage' => null,
     'canFollow' => false,
     'isFollowing' => false,
 ])
 
-<article class="post-card {{ $canDelete ? 'with-delete' : '' }}">
-    <div class="post-avatar"></div>
-
-    <div class="post-content">
-        <div class="post-meta">
-            <span class="post-user-name">{{ $userName }}</span>
-            <span class="post-account-id">{{ $accountId }}</span>
-            <span class="post-time">{{ $time }}</span>
-
-            @if ($canFollow && $userId)
-                @if ($isFollowing)
-                    <form action="{{ route('users.unfollow', $userId) }}" method="POST" class="follow-form">
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="follow-button following">
-                            フォロー中
-                        </button>
-                    </form>
-                @else
-                    <form action="{{ route('users.follow', $userId) }}" method="POST" class="follow-form">
-                        @csrf
-
-                        <button type="submit" class="follow-button">
-                            フォロー
-                        </button>
-                    </form>
-                @endif
-            @endif
-        </div>
-
-        <p class="post-text">{{ $body }}</p>
+<article class="home-post-card">
+    <div class="home-avatar-area">
+        @if ($profileImage)
+            <img
+                src="{{ asset('storage/' . $profileImage) }}"
+                class="home-avatar"
+                alt="プロフィール画像"
+            >
+        @else
+            <div class="home-avatar"></div>
+        @endif
     </div>
 
-    @if ($canDelete && $postId)
-        <form action="{{ route('posts.destroy', $postId) }}" method="POST">
-            @csrf
-            @method('DELETE')
+    <div class="home-post-content">
+        <div class="home-post-header">
+            <span class="home-user-name">
+                {{ $userName }}
+            </span>
 
-            <button type="submit" class="delete-post-button">
-                ×
-            </button>
-        </form>
+            <span class="home-account-id">
+                {{ '@' . $accountId }}
+            </span>
+
+            <span class="home-post-time">
+                ・{{ $time }}
+            </span>
+        </div>
+
+        <p class="home-post-body">
+            {{ $body }}
+        </p>
+    </div>
+
+    @if ($canFollow)
+        @if ($isFollowing)
+            <form action="{{ route('users.unfollow', $userId) }}" method="POST" class="home-follow-form">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="home-follow-button following">
+                    フォローする
+                </button>
+            </form>
+        @else
+            <form action="{{ route('users.follow', $userId) }}" method="POST" class="home-follow-form">
+                @csrf
+
+                <button type="submit" class="home-follow-button">
+                    フォローする
+                </button>
+            </form>
+        @endif
     @endif
 </article>
