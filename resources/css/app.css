@@ -602,3 +602,23 @@ body {
     text-align: center;
     color: #777;
 }
+
+.follow-form {
+    margin-left: auto;
+}
+
+.follow-button {
+    border: 1px solid #2f6df6;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.follow-button.following {
+    background-color: #ffffff;
+    color: #2f6df6;
+}

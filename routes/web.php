@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Facades\Route;
+use App\Models\Follow;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FollowController;
 
 // トップ画面
 Route::get('/', function () {
@@ -30,13 +32,32 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 
 // ホーム画面
 Route::get('/home', function () {
-    $loginUser = User::find(session('login_user_id'));
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $loginUser = User::find($loginUserId);
+
+    if ($loginUser === null) {
+        session()->forget('login_user_id');
+        return redirect('/login');
+    }
 
     $posts = Post::with('user')
         ->latest()
         ->get();
 
-    return view('home', compact('loginUser', 'posts'));
+    $followingIds = Follow::where('follower_id', $loginUserId)
+        ->pluck('followed_id')
+        ->toArray();
+
+    return view('home', [
+        'loginUser' => $loginUser,
+        'posts' => $posts,
+        'followingIds' => $followingIds,
+    ]);
 });
 
 // 投稿画面
@@ -119,3 +140,7 @@ Route::get('/profile/edit', function () {
         'loginUser' => $loginUser,
     ]);
 });
+
+// フォロー処理
+Route::post('/users/{user}/follow', [FollowController::class, 'store'])->name('users.follow');
+Route::delete('/users/{user}/follow', [FollowController::class, 'destroy'])->name('users.unfollow');
