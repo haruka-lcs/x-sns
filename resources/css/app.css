@@ -123,3 +123,506 @@ body {
     border-radius: 50%;
     background-color: #cfcfcf;
 }
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.home-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.home-tabs {
+    height: 44px;
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.home-tab {
+    flex: 1;
+    border: none;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-tab.active {
+    color: #2f6df6;
+}
+
+.home-tab.active::after {
+    content: "";
+    width: 28px;
+    height: 3px;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.post-list {
+    width: 100%;
+}
+
+.post-card {
+    display: flex;
+    gap: 12px;
+    padding: 16px 16px 18px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.post-card.with-delete .post-content {
+    padding-right: 28px;
+}
+
+.delete-post-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.post-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.post-content {
+    flex: 1;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+    font-size: 11px;
+}
+
+.post-user-name {
+    font-weight: bold;
+    color: #111111;
+}
+
+.post-account-id,
+.post-time {
+    color: #777777;
+}
+
+.post-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #111111;
+}
+
+.bottom-nav {
+    height: 56px;
+    border-top: 1px solid #e5e5e5;
+    background-color: #ffffff;
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    color: #111111;
+    text-decoration: none;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.bottom-nav-item.active {
+    color: #2f6df6;
+}
+
+.nav-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.post-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.post-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-compose {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.compose-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.compose-textarea::placeholder {
+    color: #999999;
+}
+
+.post-form {
+    position: relative;
+    padding: 24px 16px;
+}
+
+.compose-textarea {
+    flex: 1;
+    min-height: 220px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: sans-serif;
+    padding-right: 130px;
+}
+
+.post-submit-button {
+    position: absolute;
+    top: 24px;
+    right: 16px;
+
+    width: 120px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.profile-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.profile-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-user-area {
+    padding: 24px 16px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.profile-large-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+    margin-bottom: 12px;
+}
+
+.profile-info {
+    width: 100%;
+}
+
+.profile-name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-user-name {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.profile-account-id {
+    margin: 4px 0 0;
+    font-size: 11px;
+    color: #777777;
+}
+
+.profile-edit-button {
+    color: #111111;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.profile-post-list {
+    width: 100%;
+}
+
+.profile-post-card {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.profile-post-avatar {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.profile-post-content {
+    flex: 1;
+    padding-right: 28px;
+}
+
+.profile-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+    font-size: 11px;
+}
+
+.profile-post-user-name {
+    font-weight: bold;
+    color: #111111;
+}
+
+.profile-post-account-id,
+.profile-post-time {
+    color: #777777;
+}
+
+.profile-post-text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #111111;
+}
+
+.delete-post-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.profile-edit-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 64px;
+}
+
+.profile-edit-header {
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-edit-header h1 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-edit-form {
+    padding: 48px 32px 0;
+}
+
+.profile-edit-avatar {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 72px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.profile-edit-input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-edit-input-row label {
+    width: 110px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #111111;
+}
+
+.profile-edit-input-row input {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    outline: none;
+    padding: 6px 4px;
+    font-size: 12px;
+}
+
+.profile-save-button {
+    display: block;
+    width: 120px;
+    height: 36px;
+    margin: 72px auto 0;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.home-post-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-card {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-card-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #ddd;
+    flex-shrink: 0;
+}
+
+.post-card-body {
+    flex: 1;
+}
+
+.post-card-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.post-user-name {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.post-account-id {
+    color: #777;
+    font-size: 14px;
+}
+
+.post-body {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+}
+
+.post-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.empty-post-message {
+    padding: 24px;
+    text-align: center;
+    color: #777;
+}
+
+.follow-form {
+    margin-left: auto;
+}
+
+.follow-button {
+    border: 1px solid #2f6df6;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.follow-button.following {
+    background-color: #ffffff;
+    color: #2f6df6;
+}

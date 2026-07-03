@@ -1,44 +1,45 @@
 @extends('layouts.app')
 
-@section('title', '新規登録')
+@section('title', 'プロフィール')
 
 @section('content')
-    <div class="register-page">
-        <header class="auth-header">
-            <h1>新規登録</h1>
+    <div class="profile-edit-page">
+        <header class="profile-edit-header">
+            <h1>プロフィール</h1>
         </header>
 
-        <form class="register-form" action="{{ route('register.store') }}" method="POST">
+        <form class="profile-edit-form" action="{{ route('profile.update') }}" method="POST">
             @csrf
 
-            <div class="profile-image-placeholder"></div>
+            <div class="profile-edit-avatar"></div>
 
-            <div class="form-row">
+            <div class="profile-edit-input-row">
                 <label for="account_id">ユーザーID</label>
                 <input
                     type="text"
                     id="account_id"
                     name="account_id"
-                    value="{{ old('account_id') }}"
+                    value="{{ old('account_id', $loginUser->account_id) }}"
                 >
             </div>
 
-            <div class="form-row">
+            <div class="profile-edit-input-row">
                 <label for="user_name">ユーザーネーム</label>
                 <input
                     type="text"
                     id="user_name"
                     name="user_name"
-                    value="{{ old('user_name') }}"
+                    value="{{ old('user_name', $loginUser->user_name) }}"
                 >
             </div>
 
-            <div class="form-row">
+            <div class="profile-edit-input-row">
                 <label for="password">パスワード</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
+                    value="{{ old('password', $loginUser->password) }}"
                 >
             </div>
 
@@ -48,13 +49,11 @@
                 </div>
             @endif
 
-            <button type="submit" class="auth-submit-button">
-                完了
+            <button type="submit" class="profile-save-button">
+                保存する
             </button>
         </form>
 
-        <a href="/" class="back-link">
-            戻る
-        </a>
+        <x-bottom-nav active="profile" />
     </div>
 @endsection
