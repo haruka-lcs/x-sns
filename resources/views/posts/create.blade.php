@@ -2,34 +2,58 @@
 
 @section('title', '投稿')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+@endsection
+
 @section('content')
     <div class="post-page">
         <header class="post-header">
             <h1>投稿</h1>
         </header>
 
-        <form action="/posts" method="POST">
-            @csrf
+        <main class="post-main">
+            <form action="/posts" method="POST" id="post-form" class="post-form">
+                @csrf
 
-            <div class="post-compose">
-                <div class="compose-avatar"></div>
+                <div class="post-input-row">
+                    <div class="post-avatar"></div>
 
-                <textarea
-                    name="body"
-                    class="compose-textarea"
-                    placeholder="いまどうしてる？"
-                >{{ old('body') }}</textarea>
+                    <div class="post-input-area">
+                        <textarea
+                            name="body"
+                            class="post-textarea"
+                            placeholder="いまどうしてる？"
+                            maxlength="140"
+                        >{{ old('body') }}</textarea>
 
-                <button type="submit" class="post-submit-button">
-                    投稿する
-                </button>
-            </div>
+                        @error('body')
+                            <p class="post-error-message">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </form>
 
-            @error('body')
-                <p class="error-message">{{ $message }}</p>
-            @enderror
-        </form>
+            <button type="submit" form="post-form" class="post-submit-button">
+                投稿する
+            </button>
+        </main>
 
-        <x-bottom-nav active="post" />
+        <nav class="bottom-nav">
+            <a href="/home" class="bottom-nav-item">
+                <div class="bottom-nav-icon">⌂</div>
+                <span>ホーム</span>
+            </a>
+
+            <a href="/post" class="bottom-nav-item post-button active">
+                <div class="bottom-post-icon">＋</div>
+                <span>投稿</span>
+            </a>
+
+            <a href="/profile" class="bottom-nav-item">
+                <div class="bottom-nav-icon">♙</div>
+                <span>プロフィール</span>
+            </a>
+        </nav>
     </div>
 @endsection

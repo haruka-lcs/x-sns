@@ -1,0 +1,99 @@
+.register-page {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.register-header {
+    height: 116px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 48px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.register-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #111111;
+}
+
+.register-main {
+    padding: 0 32px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-avatar {
+    width: 150px;
+    height: 150px;
+    margin-top: 32px;
+    margin-bottom: 56px;
+    border-radius: 50%;
+    background-color: #cfcfcf;
+}
+
+.register-form-area {
+    width: 100%;
+}
+
+.register-form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 44px;
+}
+
+.register-label {
+    width: 125px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #111111;
+}
+
+.register-input {
+    flex: 1;
+    height: 28px;
+    border: none;
+    border-bottom: 1px solid #8a8a8a;
+    outline: none;
+    font-size: 13px;
+    color: #111111;
+    background-color: transparent;
+}
+
+.register-error-message {
+    width: 100%;
+    margin: -34px 0 28px 125px;
+    color: #e0245e;
+    font-size: 12px;
+}
+
+.register-button-area {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-submit-button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 999px;
+    background-color: #2f6df6;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.register-back-link {
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8a8a8a;
+}
