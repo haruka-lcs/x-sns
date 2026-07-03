@@ -24,29 +24,20 @@
         </section>
 
         <section class="profile-post-list">
-            <x-post-card
-                :user-name="$loginUser->user_name"
-                :account-id="'@' . $loginUser->account_id"
-                time="15分前"
-                body="アプリを開発中です。"
-                :show-delete="true"
-            />
-
-            <x-post-card
-                :user-name="$loginUser->user_name"
-                :account-id="'@' . $loginUser->account_id"
-                time="15分前"
-                body="画面実装できた"
-                :show-delete="true"
-            />
-
-            <x-post-card
-                :user-name="$loginUser->user_name"
-                :account-id="'@' . $loginUser->account_id"
-                time="15分前"
-                body="今日も少し進めた"
-                :show-delete="true"
-            />
+            @forelse ($posts as $post)
+                <x-post-card
+                    :user-name="$post->user->user_name"
+                    :account-id="'@' . $post->user->account_id"
+                    :time="$post->created_at->format('Y/m/d H:i')"
+                    :body="$post->body"
+                    :post-id="$post->id"
+                    :can-delete="true"
+                />
+            @empty
+                <p class="empty-post-message">
+                    まだ投稿がありません。
+                </p>
+            @endforelse
         </section>
 
         <x-bottom-nav active="profile" />
