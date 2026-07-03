@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 
 // トップ画面
 Route::get('/', function () {
@@ -28,28 +30,18 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 
 // ホーム画面
 Route::get('/home', function () {
-    $loginUserId = session('login_user_id');
+    $loginUser = User::find(session('login_user_id'));
 
-    if ($loginUserId === null) {
-        return redirect('/login');
-    }
+    $posts = Post::with('user')
+        ->latest()
+        ->get();
 
-    $loginUser = User::find($loginUserId);
-
-    if ($loginUser === null) {
-        session()->forget('login_user_id');
-        return redirect('/login');
-    }
-
-    return view('home', [
-        'loginUser' => $loginUser,
-    ]);
+    return view('home', compact('loginUser', 'posts'));
 });
 
 // 投稿画面
-Route::get('/post', function () {
-    return view('post');
-});
+Route::get('/post', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
 // プロフィール画面
 Route::get('/profile', function () {
@@ -119,6 +111,3 @@ Route::get('/profile/edit', function () {
         'loginUser' => $loginUser,
     ]);
 });
-
-Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

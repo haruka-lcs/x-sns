@@ -22,7 +22,7 @@ class AuthController extends Controller
             'profile_image' => null,
         ]);
 
-        session([
+       session([
             'login_user_id' => $user->id,
         ]);
 
