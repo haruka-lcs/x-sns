@@ -98,6 +98,27 @@ Route::get('/home/following', function () {
 // 投稿画面
 Route::get('/post', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('/posts', function (Request $request) {
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $request->validate([
+        'body' => ['required', 'string', 'max:140'],
+    ], [
+        'body.required' => '投稿内容を入力してください。',
+        'body.max' => '投稿は140文字以内で入力してください。',
+    ]);
+
+    Post::create([
+        'user_id' => $loginUserId,
+        'body' => $request->body,
+    ]);
+
+    return redirect('/home');
+});
 // 投稿削除
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
