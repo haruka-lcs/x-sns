@@ -28,7 +28,7 @@
                 <x-post-card
                     :user-name="$post->user->user_name"
                     :account-id="'@' . $post->user->account_id"
-                    :time="$post->created_at->format('Y/m/d H:i')"
+                    :time="$post->created_at->timezone('Asia/Tokyo')->format('Y/m/d H:i')"
                     :body="$post->body"
                     :post-id="$post->id"
                     :can-delete="true"
