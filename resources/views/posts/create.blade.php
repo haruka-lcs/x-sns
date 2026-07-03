@@ -8,7 +8,7 @@
             <h1>投稿</h1>
         </header>
 
-        <form action="{{ route('posts.store') }}" method="POST" class="post-form">
+        <form action="/posts" method="POST">
             @csrf
 
             <div class="post-compose">
