@@ -27,7 +27,7 @@
                 <x-post-card
                     :userName="$post->user->user_name"
                     :accountId="$post->user->account_id"
-                    time="15分前"
+                    :time="$post->created_at->timezone('Asia/Tokyo')->format('H:i')"
                     :body="$post->body"
                     :userId="$post->user_id"
                     :profileImage="$post->user->profile_image"
