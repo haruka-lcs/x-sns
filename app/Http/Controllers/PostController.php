@@ -18,7 +18,7 @@ class PostController extends Controller
     // 投稿画面を表示するメソッド
     public function create()
     {
-        // セッションからログイン中ユーザーのIDを取得する
+        // ログイン中ユーザーのIDを取得する
         $loginUserId = session('login_user_id');
 
         // ログイン中ユーザーIDがある場合はユーザー情報を取得し、ない場合はnullにする

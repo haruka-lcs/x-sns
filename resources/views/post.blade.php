@@ -40,7 +40,7 @@
         {{-- 投稿内容を送信するためのフォーム --}}
         <form action="/posts" method="POST" id="post-form" class="post-form">
 
-            {{-- LaravelのCSRF対策。不正なフォーム送信を防ぐ --}}
+            {{-- 不正なフォーム送信を防ぐ --}}
             @csrf
 
             {{-- プロフィール画像と投稿入力欄をまとめるエリア --}}
@@ -111,6 +111,24 @@
 
         {{-- 投稿フォームを閉じる --}}
         </form>
+
+        {{-- 投稿画面下部のナビバー --}}
+        <nav class="bottom-nav">
+            <a href="/home" class="bottom-nav-item">
+                <div class="bottom-nav-icon">⌂</div>
+                <span>ホーム</span>
+            </a>
+
+            <a href="/post" class="bottom-nav-item post-button active">
+                <div class="bottom-post-icon">＋</div>
+                <span>投稿</span>
+            </a>
+
+            <a href="/profile" class="bottom-nav-item">
+                <div class="bottom-nav-icon">♙</div>
+                <span>プロフィール</span>
+            </a>
+        </nav>
 
     {{-- 投稿ページ全体を閉じる --}}
     </div>
