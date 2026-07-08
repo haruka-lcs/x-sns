@@ -20,7 +20,15 @@
             @csrf
 
             <div class="post-create-area">
-                <div class="post-avatar"></div>
+                <div class="post-avatar">
+                    @if ($loginUser && $loginUser->profile_image)
+                        <img
+                            src="{{ asset('storage/' . $loginUser->profile_image) }}"
+                            class="post-avatar-image"
+                            alt="プロフィール画像"
+                        >
+                    @endif
+                </div>
 
                 <div class="post-input-area">
                     <textarea
