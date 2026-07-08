@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
@@ -29,30 +30,7 @@ Route::get('/register', function () {
 });
 
 // 新規登録処理
-Route::post('/register', function (Request $request) {
-    $request->validate([
-        'account_id' => ['required', 'string', 'max:50', 'unique:users,account_id'],
-        'user_name' => ['required', 'string', 'max:50'],
-        'password' => ['required', 'string'],
-        'profile_image' => ['nullable', 'image', 'max:2048'],
-    ]);
-
-    $profileImagePath = null;
-    if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
-        $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
-    }
-
-    $user = User::create([
-        'account_id' => $request->account_id,
-        'user_name' => $request->user_name,
-        'password' => $request->password,
-        'profile_image' => $profileImagePath,
-    ]);
-
-    session(['login_user_id' => $user->id]);
-
-    return redirect('/home');
-});
+Route::post('/register', [AuthController::class, 'register']);
 
 // ホーム画面：全体
 Route::get('/home', function () {
@@ -190,7 +168,7 @@ Route::post('/profile/edit', function (Request $request) {
     $request->validate([
         'account_id' => 'required|max:50|unique:users,account_id,' . $loginUser->id,
         'user_name' => 'required|max:50',
-        'password' => 'required|max:50',
+        'password' => ['nullable', 'string', 'max:50'],
         'profile_image' => ['nullable', 'image', 'max:2048'],
     ]);
 
@@ -204,12 +182,17 @@ Route::post('/profile/edit', function (Request $request) {
         $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
     }
 
-    $loginUser->update([
+    $updateData = [
         'account_id' => $request->account_id,
         'user_name' => $request->user_name,
-        'password' => $request->password,
         'profile_image' => $profileImagePath,
-    ]);
+    ];
+
+    if ($request->filled('password')) {
+        $updateData['password'] = Hash::make($request->password);
+    }
+
+    $loginUser->update($updateData);
 
     return redirect('/profile');
 })->name('profile.update');

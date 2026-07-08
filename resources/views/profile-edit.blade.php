@@ -89,7 +89,7 @@
                             id="password"
                             name="password"
                             class="profile-edit-input"
-                            value="{{ old('password', $loginUser->password) }}"
+                            value="{{ old('password') }}"
                         >
                     </div>
 
