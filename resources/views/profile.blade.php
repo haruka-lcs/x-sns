@@ -43,7 +43,15 @@
         <main class="profile-post-list">
             @forelse ($posts as $post)
                 <article class="profile-post-card">
-                    <div class="profile-post-avatar"></div>
+                    <div class="profile-post-avatar">
+                        @if ($post->user->profile_image)
+                            <img
+                                src="{{ asset('storage/' . $post->user->profile_image) }}"
+                                class="profile-post-avatar-image"
+                                alt="プロフィール画像"
+                            >
+                        @endif
+                    </div>
 
                     <div class="profile-post-content">
                         <div class="profile-post-header">
@@ -56,7 +64,7 @@
                             </span>
 
                             <span class="profile-post-time">
-                                ・15分前
+                                ・{{ $post->created_at->diffForHumans() }}
                             </span>
                         </div>
 

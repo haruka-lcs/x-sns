@@ -191,12 +191,24 @@ Route::post('/profile/edit', function (Request $request) {
         'account_id' => 'required|max:50|unique:users,account_id,' . $loginUser->id,
         'user_name' => 'required|max:50',
         'password' => 'required|max:50',
+        'profile_image' => ['nullable', 'image', 'max:2048'],
     ]);
+
+    $profileImagePath = $loginUser->profile_image;
+
+    if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
+        if ($loginUser->profile_image) {
+            Storage::disk('public')->delete($loginUser->profile_image);
+        }
+
+        $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
+    }
 
     $loginUser->update([
         'account_id' => $request->account_id,
         'user_name' => $request->user_name,
         'password' => $request->password,
+        'profile_image' => $profileImagePath,
     ]);
 
     return redirect('/profile');

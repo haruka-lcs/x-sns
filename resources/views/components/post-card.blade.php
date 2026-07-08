@@ -11,15 +11,15 @@
 
 <article class="home-post-card">
     <div class="home-avatar-area">
-        @if ($profileImage)
-            <img
-                src="{{ asset('storage/' . $profileImage) }}"
-                class="home-avatar"
-                alt="プロフィール画像"
-            >
-        @else
-            <div class="home-avatar"></div>
-        @endif
+        <div class="home-avatar">
+            @if ($profileImage)
+                <img
+                    src="{{ asset('storage/' . $profileImage) }}"
+                    class="home-avatar-image"
+                    alt="プロフィール画像"
+                >
+            @endif
+        </div>
     </div>
 
     <div class="home-post-content">

@@ -13,10 +13,34 @@
         </header>
 
         <main class="profile-edit-main">
-            <form action="/profile/edit" method="POST" class="profile-edit-form">
+            <form
+                action="/profile/edit"
+                method="POST"
+                class="profile-edit-form"
+                enctype="multipart/form-data"
+            >
                 @csrf
 
-                <div class="profile-edit-avatar"></div>
+                <label for="profile_image" class="profile-edit-avatar">
+                    <img
+                        id="avatarPreview"
+                        src="{{ $loginUser->profile_image ? asset('storage/' . $loginUser->profile_image) : '' }}"
+                        alt="プロフィール画像"
+                        class="profile-edit-avatar-image {{ $loginUser->profile_image ? '' : 'hidden' }}"
+                    >
+                </label>
+
+                <input
+                    type="file"
+                    id="profile_image"
+                    name="profile_image"
+                    accept="image/*"
+                    class="profile-edit-file-input"
+                >
+
+                @error('profile_image')
+                    <p class="profile-edit-error-message">{{ $message }}</p>
+                @enderror
 
                 <div class="profile-edit-form-area">
                     <div class="profile-edit-form-row">
@@ -99,4 +123,22 @@
             </a>
         </nav>
     </div>
+
+    <script>
+        const profileImageInput = document.getElementById('profile_image');
+        const avatarPreview = document.getElementById('avatarPreview');
+
+        profileImageInput.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file === undefined) {
+                return;
+            }
+
+            const imageUrl = URL.createObjectURL(file);
+
+            avatarPreview.src = imageUrl;
+            avatarPreview.classList.remove('hidden');
+        });
+    </script>
 @endsection
