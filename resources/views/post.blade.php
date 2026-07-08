@@ -44,5 +44,22 @@
                 </div>
             </div>
         </form>
+
+        <nav class="bottom-nav">
+            <a href="/home" class="bottom-nav-item">
+                <div class="bottom-nav-icon">⌂</div>
+                <span>ホーム</span>
+            </a>
+
+            <a href="/post" class="bottom-nav-item post-button active">
+                <div class="bottom-post-icon">＋</div>
+                <span>投稿</span>
+            </a>
+
+            <a href="/profile" class="bottom-nav-item">
+                <div class="bottom-nav-icon">♙</div>
+                <span>プロフィール</span>
+            </a>
+        </nav>
     </div>
 @endsection
