@@ -205,3 +205,24 @@
     color: #2f6df6;
     font-weight: 700;
 }
+
+.home-avatar-area {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+}
+
+.home-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    overflow: hidden;
+}
+
+.home-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
