@@ -32,7 +32,7 @@
                     :userId="$post->user_id"
                     :profileImage="$post->user->profile_image"
                     :canFollow="$loginUser->id !== $post->user_id"
-                    :isFollowing="isset($followingUserIds) && in_array($post->user_id, $followingUserIds)"
+                    :isFollowing="isset($followingIds) && in_array($post->user_id, $followingIds)"
                 />
             @empty
                 <div class="home-empty">

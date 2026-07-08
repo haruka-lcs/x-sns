@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function create()
     {
-        return view('posts.create');
+        $loginUserId = session('login_user_id');
+        $loginUser = $loginUserId ? User::find($loginUserId) : null;
+
+        return view('post', [
+            'loginUser' => $loginUser,
+        ]);
     }
 
     public function store(Request $request)

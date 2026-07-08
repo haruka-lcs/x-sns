@@ -49,7 +49,7 @@
                 @method('DELETE')
 
                 <button type="submit" class="home-follow-button following">
-                    フォローする
+                    フォロー中
                 </button>
             </form>
         @else
