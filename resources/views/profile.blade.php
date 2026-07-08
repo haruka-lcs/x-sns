@@ -2,6 +2,10 @@
 
 @section('title', 'プロフィール')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+@endsection
+
 @section('content')
     <div class="profile-page">
         <header class="profile-header">
@@ -9,37 +13,97 @@
         </header>
 
         <section class="profile-user-area">
-            <div class="profile-large-avatar"></div>
+            @if ($loginUser->profile_image)
+                <img
+                    src="{{ asset('storage/' . $loginUser->profile_image) }}"
+                    class="profile-large-avatar"
+                    alt="プロフィール画像"
+                >
+            @else
+                <div class="profile-large-avatar"></div>
+            @endif
 
-            <div class="profile-info">
-                <div class="profile-name-row">
-                    <div>
-                        <p class="profile-user-name">{{ $loginUser->user_name }}</p>
-                        <p class="profile-account-id">{{ '@' . $loginUser->account_id }}</p>
-                    </div>
+            <div class="profile-user-info">
+                <div class="profile-user-text">
+                    <p class="profile-user-name">
+                        {{ $loginUser->user_name }}
+                    </p>
 
-                    <a href="/profile/edit" class="profile-edit-button">✎</a>
+                    <p class="profile-account-id">
+                        {{ '@' . $loginUser->account_id }}
+                    </p>
                 </div>
+
+                <a href="/profile/edit" class="profile-edit-button">
+                    ✎
+                </a>
             </div>
         </section>
 
-        <section class="profile-post-list">
+        <main class="profile-post-list">
             @forelse ($posts as $post)
-                <x-post-card
-                    :user-name="$post->user->user_name"
-                    :account-id="'@' . $post->user->account_id"
-                    :time="$post->created_at->format('Y/m/d H:i')"
-                    :body="$post->body"
-                    :post-id="$post->id"
-                    :can-delete="true"
-                />
-            @empty
-                <p class="empty-post-message">
-                    まだ投稿がありません。
-                </p>
-            @endforelse
-        </section>
+                <article class="profile-post-card">
+                    <div class="profile-post-avatar">
+                        @if ($post->user->profile_image)
+                            <img
+                                src="{{ asset('storage/' . $post->user->profile_image) }}"
+                                class="profile-post-avatar-image"
+                                alt="プロフィール画像"
+                            >
+                        @endif
+                    </div>
 
-        <x-bottom-nav active="profile" />
+                    <div class="profile-post-content">
+                        <div class="profile-post-header">
+                            <span class="profile-post-user-name">
+                                {{ $post->user->user_name }}
+                            </span>
+
+                            <span class="profile-post-account-id">
+                                {{ '@' . $post->user->account_id }}
+                            </span>
+
+                            <span class="profile-post-time">
+                                ・{{ $post->created_at->diffForHumans() }}
+                            </span>
+                        </div>
+
+                        <p class="profile-post-body">
+                            {{ $post->body }}
+                        </p>
+                    </div>
+
+                    <form action="/posts/{{ $post->id }}" method="POST" class="profile-delete-form">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="profile-delete-button">
+                            🗑
+                        </button>
+                    </form>
+                </article>
+            @empty
+                <div class="profile-empty">
+                    <p>まだ投稿がありません。</p>
+                </div>
+            @endforelse
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="/home" class="bottom-nav-item">
+                <div class="bottom-nav-icon">⌂</div>
+                <span>ホーム</span>
+            </a>
+
+            <a href="/post" class="bottom-nav-item post-button">
+                <div class="bottom-post-icon">＋</div>
+                <span>投稿</span>
+            </a>
+
+            <a href="/profile" class="bottom-nav-item active">
+                <div class="bottom-nav-icon">♙</div>
+                <span>プロフィール</span>
+            </a>
+        </nav>
     </div>
 @endsection

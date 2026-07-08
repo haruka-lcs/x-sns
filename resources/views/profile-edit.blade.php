@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール')
+@section('title', 'プロフィール編集')
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/profile-edit.css') }}">
+@endsection
 
 @section('content')
     <div class="profile-edit-page">
@@ -8,52 +12,133 @@
             <h1>プロフィール</h1>
         </header>
 
-        <form class="profile-edit-form" action="{{ route('profile.update') }}" method="POST">
-            @csrf
+        <main class="profile-edit-main">
+            <form
+                action="/profile/edit"
+                method="POST"
+                class="profile-edit-form"
+                enctype="multipart/form-data"
+            >
+                @csrf
 
-            <div class="profile-edit-avatar"></div>
+                <label for="profile_image" class="profile-edit-avatar">
+                    <img
+                        id="avatarPreview"
+                        src="{{ $loginUser->profile_image ? asset('storage/' . $loginUser->profile_image) : '' }}"
+                        alt="プロフィール画像"
+                        class="profile-edit-avatar-image {{ $loginUser->profile_image ? '' : 'hidden' }}"
+                    >
+                </label>
 
-            <div class="profile-edit-input-row">
-                <label for="account_id">ユーザーID</label>
                 <input
-                    type="text"
-                    id="account_id"
-                    name="account_id"
-                    value="{{ old('account_id', $loginUser->account_id) }}"
+                    type="file"
+                    id="profile_image"
+                    name="profile_image"
+                    accept="image/*"
+                    class="profile-edit-file-input"
                 >
-            </div>
 
-            <div class="profile-edit-input-row">
-                <label for="user_name">ユーザーネーム</label>
-                <input
-                    type="text"
-                    id="user_name"
-                    name="user_name"
-                    value="{{ old('user_name', $loginUser->user_name) }}"
-                >
-            </div>
+                @error('profile_image')
+                    <p class="profile-edit-error-message">{{ $message }}</p>
+                @enderror
 
-            <div class="profile-edit-input-row">
-                <label for="password">パスワード</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value="{{ old('password', $loginUser->password) }}"
-                >
-            </div>
+                <div class="profile-edit-form-area">
+                    <div class="profile-edit-form-row">
+                        <label for="account_id" class="profile-edit-label">
+                            ユーザーID
+                        </label>
 
-            @if ($errors->any())
-                <div class="error-message">
-                    入力内容を確認してください
+                        <input
+                            type="text"
+                            id="account_id"
+                            name="account_id"
+                            class="profile-edit-input"
+                            value="{{ old('account_id', $loginUser->account_id) }}"
+                        >
+                    </div>
+
+                    @error('account_id')
+                        <p class="profile-edit-error-message">{{ $message }}</p>
+                    @enderror
+
+                    <div class="profile-edit-form-row">
+                        <label for="user_name" class="profile-edit-label">
+                            ユーザーネーム
+                        </label>
+
+                        <input
+                            type="text"
+                            id="user_name"
+                            name="user_name"
+                            class="profile-edit-input"
+                            value="{{ old('user_name', $loginUser->user_name) }}"
+                        >
+                    </div>
+
+                    @error('user_name')
+                        <p class="profile-edit-error-message">{{ $message }}</p>
+                    @enderror
+
+                    <div class="profile-edit-form-row">
+                        <label for="password" class="profile-edit-label">
+                            パスワード
+                        </label>
+
+                        <input
+                            type="text"
+                            id="password"
+                            name="password"
+                            class="profile-edit-input"
+                            value="{{ old('password') }}"
+                        >
+                    </div>
+
+                    @error('password')
+                        <p class="profile-edit-error-message">{{ $message }}</p>
+                    @enderror
                 </div>
-            @endif
 
-            <button type="submit" class="profile-save-button">
-                保存する
-            </button>
-        </form>
+                <div class="profile-edit-button-area">
+                    <button type="submit" class="profile-edit-submit-button">
+                        保存する
+                    </button>
+                </div>
+            </form>
+        </main>
 
-        <x-bottom-nav active="profile" />
+        <nav class="bottom-nav">
+            <a href="/home" class="bottom-nav-item">
+                <div class="bottom-nav-icon">⌂</div>
+                <span>ホーム</span>
+            </a>
+
+            <a href="/post" class="bottom-nav-item post-button">
+                <div class="bottom-post-icon">＋</div>
+                <span>投稿</span>
+            </a>
+
+            <a href="/profile" class="bottom-nav-item active">
+                <div class="bottom-nav-icon">♙</div>
+                <span>プロフィール</span>
+            </a>
+        </nav>
     </div>
+
+    <script>
+        const profileImageInput = document.getElementById('profile_image');
+        const avatarPreview = document.getElementById('avatarPreview');
+
+        profileImageInput.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file === undefined) {
+                return;
+            }
+
+            const imageUrl = URL.createObjectURL(file);
+
+            avatarPreview.src = imageUrl;
+            avatarPreview.classList.remove('hidden');
+        });
+    </script>
 @endsection

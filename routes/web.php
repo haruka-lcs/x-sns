@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Follow;
@@ -28,7 +30,7 @@ Route::get('/register', function () {
 });
 
 // 新規登録処理
-Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+Route::post('/register', [AuthController::class, 'register']);
 
 // ホーム画面：全体
 Route::get('/home', function () {
@@ -98,6 +100,27 @@ Route::get('/home/following', function () {
 // 投稿画面
 Route::get('/post', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('/posts', function (Request $request) {
+    $loginUserId = session('login_user_id');
+
+    if ($loginUserId === null) {
+        return redirect('/login');
+    }
+
+    $request->validate([
+        'body' => ['required', 'string', 'max:140'],
+    ], [
+        'body.required' => '投稿内容を入力してください。',
+        'body.max' => '投稿は140文字以内で入力してください。',
+    ]);
+
+    Post::create([
+        'user_id' => $loginUserId,
+        'body' => $request->body,
+    ]);
+
+    return redirect('/home');
+});
 // 投稿削除
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
@@ -145,14 +168,31 @@ Route::post('/profile/edit', function (Request $request) {
     $request->validate([
         'account_id' => 'required|max:50|unique:users,account_id,' . $loginUser->id,
         'user_name' => 'required|max:50',
-        'password' => 'required|max:50',
+        'password' => ['nullable', 'string', 'max:50'],
+        'profile_image' => ['nullable', 'image', 'max:2048'],
     ]);
 
-    $loginUser->update([
+    $profileImagePath = $loginUser->profile_image;
+
+    if ($request->hasFile('profile_image') && $request->file('profile_image')->isValid()) {
+        if ($loginUser->profile_image) {
+            Storage::disk('public')->delete($loginUser->profile_image);
+        }
+
+        $profileImagePath = $request->file('profile_image')->store('profile_images', 'public');
+    }
+
+    $updateData = [
         'account_id' => $request->account_id,
         'user_name' => $request->user_name,
-        'password' => $request->password,
-    ]);
+        'profile_image' => $profileImagePath,
+    ];
+
+    if ($request->filled('password')) {
+        $updateData['password'] = Hash::make($request->password);
+    }
+
+    $loginUser->update($updateData);
 
     return redirect('/profile');
 })->name('profile.update');

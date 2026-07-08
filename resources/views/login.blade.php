@@ -2,47 +2,63 @@
 
 @section('title', 'ログイン')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
+
 @section('content')
-    <div class="auth-page">
-        <header class="auth-header">
+    <div class="login-page">
+        <header class="login-header">
             <h1>ログイン</h1>
         </header>
 
-        <form class="auth-form" action="{{ route('login.check') }}" method="POST">
-            @csrf
+        <main class="login-main">
+            <form action="/login" method="POST" class="login-form">
+                @csrf
 
-            <div class="form-row">
-                <label for="account_id">ユーザーID</label>
-                <input
-                    type="text"
-                    id="account_id"
-                    name="account_id"
-                    value="{{ old('account_id') }}"
-                >
-            </div>
+                <div class="login-form-row">
+                    <label for="account_id" class="login-label">
+                        ユーザーID
+                    </label>
 
-            <div class="form-row">
-                <label for="password">パスワード</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                >
-            </div>
-
-            @if ($errors->any())
-                <div class="error-message">
-                    ユーザーIDまたはパスワードが違います
+                    <input
+                        type="text"
+                        id="account_id"
+                        name="account_id"
+                        class="login-input"
+                        value="{{ old('account_id') }}"
+                    >
                 </div>
-            @endif
 
-            <button type="submit" class="auth-submit-button">
-                完了
-            </button>
-        </form>
+                <div class="login-form-row">
+                    <label for="password" class="login-label">
+                        パスワード
+                    </label>
 
-        <a href="/" class="back-link">
-            戻る
-        </a>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="login-input"
+                    >
+                </div>
+
+                @if ($errors->any())
+                    <p class="login-error-message">
+                        ユーザーIDまたはパスワードが正しくありません。
+                    </p>
+                @endif
+
+                <div class="login-button-area">
+                    <button type="submit" class="login-submit-button">
+                        完了
+                    </button>
+
+                    <a href="/" class="login-back-link">
+                        戻る
+                    </a>
+                </div>
+            </form>
+        </main>
     </div>
 @endsection
